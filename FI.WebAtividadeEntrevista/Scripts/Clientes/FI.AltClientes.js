@@ -139,7 +139,6 @@ $(document).ready(function () {
         $('#formCadastro #Logradouro').val(obj.Logradouro);
         $('#formCadastro #Telefone').val(obj.Telefone);
         $('#formCadastro #CPF').val(obj.CPF);
-        $('#formCadastro #CPF').prop('readonly', true);
         $('#formBeneficiario #CodigoCliente').val(obj.Id);
 
         arrayBeneficiarios = obj.Beneficiarios;

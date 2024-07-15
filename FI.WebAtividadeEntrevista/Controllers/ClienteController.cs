@@ -28,6 +28,8 @@ namespace WebAtividadeEntrevista.Controllers
         {
             BoCliente bo = new BoCliente();
 
+            model.Beneficiarios = model.Beneficiarios ?? new List<Beneficiarios>();
+
             if (!this.ModelState.IsValid)
             {
                 List<string> erros = (from item in ModelState.Values
@@ -78,6 +80,8 @@ namespace WebAtividadeEntrevista.Controllers
         {
             BoCliente bo = new BoCliente();
 
+            model.Beneficiarios = model.Beneficiarios ?? new List<Beneficiarios>();
+
             if (!this.ModelState.IsValid)
             {
                 List<string> erros = (from item in ModelState.Values
@@ -91,6 +95,11 @@ namespace WebAtividadeEntrevista.Controllers
             {
                 Response.StatusCode = 400;
                 return Json(string.Join(Environment.NewLine, new List<string> { "CPF INVÁLIDO!" }));
+            }
+            else if (bo.VerificarExistenciaCadastrado(model.CPF, model.Id))
+            {
+                Response.StatusCode = 400;
+                return Json(string.Join(Environment.NewLine, new List<string> { "CPF JÁ EXISTE NA BASE DE DADOS!" }));
             }
             else
             {

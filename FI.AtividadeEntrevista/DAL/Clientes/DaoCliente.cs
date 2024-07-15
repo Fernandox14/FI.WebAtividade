@@ -63,6 +63,18 @@ namespace FI.AtividadeEntrevista.DAL
             return ds.Tables[0].Rows.Count > 0;
         }
 
+        internal bool VerificarExistenciaCadastrado(string CPF, long CodigoCliente)
+        {
+            List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
+
+            parametros.Add(new System.Data.SqlClient.SqlParameter("CPF", CPF));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("IDCLIENTE", CodigoCliente));
+
+            DataSet ds = base.Consultar("FI_SP_VerificaCCliente", parametros);
+
+            return ds.Tables[0].Rows.Count > 0;
+        }
+
         internal List<Cliente> Pesquisa(int iniciarEm, int quantidade, string campoOrdenacao, bool crescente, out int qtd)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
